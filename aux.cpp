@@ -1,4 +1,5 @@
-#include "auxiliares.h"
+#include "aux.h"
+#include "automato.h"
 
 vector<string> tirar_virgula(string linha){
     vector<string>result;
@@ -23,4 +24,22 @@ string tirar_chaves(string linha){
     int fim = linha.find('}');
 
     return linha.substr(ini + 1, fim - ini - 1);
+}
+
+void print_automato(Automato automato){
+    cout<<"AUTOMATO\n";
+    cout<<"Q="<<automato.Q<<endl;
+    for (auto estados: automato.estadosFinais){
+        cout<<estados<<" ";
+    }
+    cout<<endl;
+
+    for (auto fita: automato.alfabetoFita){
+        cout<<fita<<" ";
+    }
+    cout<<endl;
+    for (auto p: automato.alfabetoPilha){
+        cout<<p<<" ";
+    }
+    cout<<endl;
 }
