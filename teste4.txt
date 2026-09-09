@@ -1,0 +1,24 @@
+Q=10
+F={q9}
+alfabeto_fita = {a,b,c,d}
+alfabeto_pilha = {X,Y}
+
+(q0,@,$) = (q1,$)
+(q1,a,$) = (q2,X)
+(q1,b,$) = (q3,Y)
+(q1,c,$) = (q4,YY)
+(q2,a,X) = (q2,XX)
+(q2,b,X) = (q5,@)
+(q2,c,X) = (q6,Y)
+(q3,b,Y) = (q3,YY)
+(q3,a,Y) = (q5,@)
+(q3,c,Y) = (q6,X)
+(q4,c,$) = (q4,YY)
+(q4,d,Y) = (q7,@)
+(q5,d,X) = (q5,@)
+(q5,c,X) = (q6,@)
+(q6,d,Y) = (q6,@)
+(q6,d,X) = (q8,@)
+(q7,d,Y) = (q7,@)
+(q7,a,Y) = (q8,@)
+(q8,d,$) = (q9,@)

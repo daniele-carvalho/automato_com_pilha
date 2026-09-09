@@ -1,0 +1,12 @@
+Q=6
+F={q4,q5}
+alfabeto_fita = {a,b,c}
+alfabeto_pilha = {X,Y}
+
+(q0,@,$) = (q1,$)
+(q1,a,$) = (q2,X)
+(q1,b,$) = (q3,Y)
+(q2,a,X) = (q2,X)
+(q2,c,X) = (q4,@)
+(q3,b,Y) = (q3,Y)
+(q3,c,Y) = (q5,@)
