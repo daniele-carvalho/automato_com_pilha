@@ -1,5 +1,7 @@
 #include "aux.h"
 #include "automato.h"
+#include <bits/stdc++.h>
+using namespace std; 
 
 vector<string> tirar_virgula(string linha){
     vector<string>result;
@@ -38,8 +40,17 @@ void print_automato(Automato automato){
         cout<<fita<<" ";
     }
     cout<<endl;
+
     for (auto p: automato.alfabetoPilha){
         cout<<p<<" ";
     }
     cout<<endl;
+
+    for(auto transicao: automato.transicoes){
+        cout<<"("<<transicao.estadoAtual<<",";
+        cout<<transicao.entrada<<",";
+        cout<<transicao.topo<<") = (";
+        cout<<transicao.proximoEstado<<",";
+        cout<<transicao.operacaoPilha<<")"<<endl;
+    }
 }
