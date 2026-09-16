@@ -7,9 +7,19 @@ int main(){
 
     Automato automato{};
     string nome;
-    cout<<"Digite o nome do arquivo txt\n"; //exemplo: file.txt
-    cin>>nome;
+
+    cout << "Digite o nome do arquivo txt\n";
+    cin >> nome;
 
     ler_arquivo(nome, automato);
-    print_automato(automato);
+
+    string cadeia;
+    cout << "Digite a cadeia: ";
+    cin >> cadeia;
+
+    if(simular(automato, cadeia)){
+        cout << "ACEITA" << endl;
+    }else{
+        cout << "REJEITA" << endl;
+    }
 }

@@ -72,3 +72,96 @@ void ler_transicoes(ifstream &arquivo, Automato &automato, string linha){
         }
     }
 }
+
+//procura a transicao atual
+Transicao buscar_transicao(Automato automato, string estado, char entrada, char topo){
+    for(auto transicao: automato.transicoes){
+        if (transicao.estadoAtual == estado &&
+            transicao.entrada == entrada &&
+            (transicao.topo == topo || transicao.topo == '@')){
+            return transicao;
+        }
+    }
+    return Transicao{};
+}
+
+void op_pilha(stack<char>&pilha, string operacao){
+    if (operacao!= "@"){ //@ eh a palavra vazia, ent se for @ n adiciona nada
+        for (char c: operacao){
+            pilha.push(c); //adc letras na pilha
+        }
+    }
+}
+
+bool simular(Automato automato, string cadeia){
+    string estado = "q0";
+    stack<char> pilha;
+
+    char topo;
+
+    if (pilha.empty()){
+        topo = '@';
+    }else{
+        topo = pilha.top();
+    }
+
+    Transicao transicao = buscar_transicao(automato, estado, '@', topo);
+
+    if(transicao.estadoAtual != ""){
+        op_pilha(pilha, transicao.operacaoPilha);
+        estado = transicao.proximoEstado;
+    }
+
+    for (int i=0;i<cadeia.size();i++){
+        char entrada = cadeia[i];
+
+        cout << "Estado: " << estado << endl;
+        cout << "Entrada: " << entrada << endl;
+
+        if (pilha.empty()){
+            topo = '@';
+        }else{
+            topo = pilha.top();
+        }
+
+        cout << "Topo: " << topo << endl;
+
+        transicao = buscar_transicao(automato, estado, entrada, topo);
+
+        if (transicao.estadoAtual == ""){
+            return false;
+        }
+
+        if (transicao.topo != '@'){
+            pilha.pop();
+        }
+
+        op_pilha(pilha, transicao.operacaoPilha);
+        estado = transicao.proximoEstado;
+    }
+
+    if (pilha.empty()){
+        topo = '@';
+    }else{
+        topo = pilha.top();
+    }
+
+    transicao = buscar_transicao(automato, estado, '@', topo);
+
+    if(transicao.estadoAtual != ""){
+        if (transicao.topo != '@'){
+            pilha.pop();
+        }
+
+        op_pilha(pilha, transicao.operacaoPilha);
+        estado = transicao.proximoEstado;
+    }
+
+    for (string estadoFinal: automato.estadosFinais){
+        if (estado == estadoFinal){
+            return true;
+        }
+    }
+
+    return false;
+}

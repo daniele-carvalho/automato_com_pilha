@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <stack>
 using namespace std;
 
 typedef struct{
@@ -25,5 +26,8 @@ typedef struct{
 
 void ler_arquivo(string nome, Automato &automato);
 void ler_transicoes(ifstream &arquivo, Automato &automato, string linha);
+Transicao buscar_transicao(Automato automato, string estado, char entrada, char topo);
+void op_pilha(stack<char>&pilha, string operacao);
+bool simular(Automato automato, string cadeia);
 
 #endif
