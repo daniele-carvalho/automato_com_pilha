@@ -45,7 +45,7 @@ void print_automato(Automato automato){
         cout<<p<<" ";
     }
     cout<<endl;
-
+    cout<<"TRANSIÇÕES: \n";
     for(auto transicao: automato.transicoes){
         cout<<"("<<transicao.estadoAtual<<",";
         cout<<transicao.entrada<<",";
